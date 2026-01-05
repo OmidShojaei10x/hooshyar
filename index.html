@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>هوش‌یار | Hooshyar AI Presentation</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    
+    <!-- Vazirmatn Font -->
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet" type="text/css" />
+
+    <style>
+        :root {
+            --yek-yellow: #fed813;
+            --yek-saffron: #f3c42e;
+            --yek-jet: #323232;
+            --yek-white: #f2f2f2;
+            --yek-keppel: #2fbea8;
+        }
+
+        body {
+            font-family: 'Vazirmatn', sans-serif;
+            background-color: var(--yek-white);
+            color: var(--yek-jet);
+            overflow-x: hidden;
+        }
+
+        /* Yektanet Geometric Vibe */
+        .yek-card {
+            background: white;
+            border: 1px solid #e5e5e5;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .yek-card:hover {
+            border-color: var(--yek-yellow);
+            box-shadow: 0 10px 30px -10px rgba(0,0,0,0.1);
+            transform: translateY(-2px);
+        }
+
+        .yek-title {
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        .yek-highlight {
+            color: var(--yek-saffron);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #ccc;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--yek-yellow);
+        }
+
+        /* Hexagon Decoration */
+        .hex-bg {
+            background-color: #ffffff;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='49' viewBox='0 0 28 49'%3E%3Cg fill-rule='evenodd'%3E%3Cg id='hexagons' fill='%23fed813' fill-opacity='0.05' fill-rule='nonzero'%3E%3Cpath d='M13.99 9.25l13 7.5v15l-13 7.5L1 31.75v-15l12.99-7.5zM3 17.9v12.7l10.99 6.34 11-6.35V17.9l-11-6.34L3 17.9zM0 15l12.98-7.5V0h-2v6.35L0 12.69v2.3zm0 18.5L12.98 41v8h-2v-6.85L0 35.81v-2.3zM15 0v7.5L27.99 15H28v-2.31h-.01L17 6.35V0h-2zm0 49v-8l12.99-7.5H28v2.31h-.01L17 42.15V49h-2z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+        
+        .nav-active {
+            color: var(--yek-jet);
+            border-bottom: 3px solid var(--yek-yellow);
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 bg-white border-b border-gray-200 z-50 h-16 flex items-center shadow-sm">
+        <div class="container mx-auto px-4 flex justify-between items-center">
+            <div class="flex items-center gap-2">
+                <!-- Yektanet Logo Simulation -->
+                <div class="flex items-center gap-2 font-black text-2xl tracking-tighter">
+                    <div class="w-8 h-8 bg-[#fed813] flex items-center justify-center relative">
+                        <div class="w-2 h-2 bg-[#323232] rounded-full"></div>
+                    </div>
+                    <span>یکتانت</span>
+                    <span class="text-gray-400 font-light text-sm mr-2">| هوش‌یار</span>
+                </div>
+            </div>
+            
+            <div class="hidden md:flex gap-6 text-sm text-gray-500">
+                <a href="#intro" class="hover:text-black py-5 nav-link nav-active" onclick="setActive(this)">معرفی</a>
+                <a href="#features" class="hover:text-black py-5 nav-link" onclick="setActive(this)">ویژگی‌ها</a>
+                <a href="#admin" class="hover:text-black py-5 nav-link" onclick="setActive(this)">پنل ادمین</a>
+                <a href="#architecture" class="hover:text-black py-5 nav-link" onclick="setActive(this)">معماری</a>
+                <a href="#roadmap" class="hover:text-black py-5 nav-link" onclick="setActive(this)">آینده</a>
+            </div>
+
+            <button class="md:hidden text-2xl" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
+                &#9776;
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden fixed top-16 left-0 right-0 bg-white border-b border-gray-200 z-40 p-4 flex flex-col gap-4 shadow-lg md:hidden">
+        <a href="#intro" class="p-2 border-b border-gray-100">معرفی</a>
+        <a href="#features" class="p-2 border-b border-gray-100">ویژگی‌ها</a>
+        <a href="#admin" class="p-2 border-b border-gray-100">پنل ادمین</a>
+        <a href="#architecture" class="p-2 border-b border-gray-100">معماری</a>
+        <a href="#roadmap" class="p-2">آینده</a>
+    </div>
+
+    <!-- Hero Section -->
+    <header id="intro" class="pt-32 pb-20 bg-[#fed813] text-[#323232] relative overflow-hidden">
+        <!-- Decoration -->
+        <div class="absolute top-0 right-0 w-64 h-64 bg-white opacity-10 rounded-full blur-3xl translate-x-1/2 -translate-y-1/2"></div>
+        
+        <div class="container mx-auto px-4 relative z-10 grid md:grid-cols-2 gap-12 items-center">
+            <div>
+                <div class="inline-block bg-[#323232] text-white text-xs font-bold px-3 py-1 mb-6 rounded-sm">نسخه ۱.۰ - دی ۱۴۰۴</div>
+                <h1 class="text-5xl md:text-6xl font-black mb-6 leading-tight">
+                    هوش‌یار <br>
+                    <span class="text-3xl md:text-4xl font-bold opacity-90">دستیار هوشمند تحلیل گروه‌ها</span>
+                </h1>
+                <p class="text-lg mb-8 font-medium max-w-lg leading-relaxed opacity-90">
+                    بات تلگرام مبتنی بر GPT-4 برای مدیریت مکالمات، تحلیل احساسات مشتریان و گزارش‌دهی خودکار در اکوسیستم یکتانت.
+                </p>
+                <div class="flex flex-wrap gap-4">
+                    <a href="#features" class="bg-[#323232] text-white px-8 py-3 font-bold hover:bg-black transition-colors rounded-sm shadow-lg">
+                        بررسی امکانات
+                    </a>
+                    <a href="#architecture" class="bg-white text-[#323232] px-8 py-3 font-bold hover:bg-gray-50 transition-colors rounded-sm shadow-lg">
+                        مستندات فنی
+                    </a>
+                </div>
+            </div>
+            <div class="hidden md:block relative">
+                <!-- Abstract UI Representation -->
+                <div class="bg-white p-6 rounded-lg shadow-2xl border-4 border-[#323232] transform rotate-3 hover:rotate-0 transition-transform duration-500">
+                    <div class="flex items-center gap-3 border-b pb-4 mb-4">
+                        <div class="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center">🤖</div>
+                        <div>
+                            <div class="font-bold text-sm">Hooshyar AI</div>
+                            <div class="text-xs text-green-500">Online</div>
+                        </div>
+                    </div>
+                    <div class="space-y-3">
+                        <div class="bg-gray-50 p-3 rounded-tr-xl rounded-bl-xl rounded-br-xl text-sm border-l-4 border-[#fed813]">
+                            📊 <b>گزارش هفتگی آماده است:</b><br>
+                            - تعداد پیام‌ها: ۱,۲۴۰<br>
+                            - موضوع داغ: کمپین یلدا<br>
+                            - کاربر فعال: علی محمدی
+                        </div>
+                        <div class="bg-gray-50 p-3 rounded-tr-xl rounded-bl-xl rounded-br-xl text-sm border-l-4 border-red-500">
+                            🚨 <b>هشدار نارضایتی:</b><br>
+                            مشتری در گروه "کمپین A" از تاخیر در پاسخگویی شکایت دارد.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Stats Bar -->
+    <div class="bg-[#323232] text-white py-8">
+        <div class="container mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+            <div>
+                <div class="text-[#fed813] text-3xl font-black mb-1">GPT-4</div>
+                <div class="text-sm opacity-70">هسته هوشمند</div>
+            </div>
+            <div>
+                <div class="text-[#fed813] text-3xl font-black mb-1">۲۴/۷</div>
+                <div class="text-sm opacity-70">مانیتورینگ</div>
+            </div>
+            <div>
+                <div class="text-[#fed813] text-3xl font-black mb-1">۱۰۰٪</div>
+                <div class="text-sm opacity-70">امنیت داده‌ها</div>
+            </div>
+            <div>
+                <div class="text-[#fed813] text-3xl font-black mb-1">REST</div>
+                <div class="text-sm opacity-70">معماری API</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- User Features Section -->
+    <section id="features" class="py-20 bg-[#f2f2f2] relative">
+        <div class="absolute inset-0 hex-bg pointer-events-none"></div>
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-black mb-4 relative inline-block">
+                    ویژگی‌های کاربران عادی
+                    <span class="block h-1 w-1/2 bg-[#fed813] mx-auto mt-2"></span>
+                </h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">ابزارهای کاربردی برای مدیریت بهتر گروه‌ها و ارتباط با مشتریان</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                
+                <!-- Feature 1 -->
+                <div class="yek-card p-6 rounded-md">
+                    <div class="w-12 h-12 bg-gray-100 text-[#323232] flex items-center justify-center rounded-sm mb-4 text-2xl">📋</div>
+                    <h3 class="text-xl font-bold mb-3">مدیریت گروه‌ها</h3>
+                    <ul class="text-sm text-gray-600 space-y-2 list-disc list-inside marker:text-[#fed813]">
+                        <li>افزودن و احراز هویت خودکار</li>
+                        <li>مشاهده وضعیت آنلاین/آفلاین بات</li>
+                        <li>آرشیو و بازیابی گروه‌ها</li>
+                        <li>لیست کامل اعضا و نقش‌ها</li>
+                    </ul>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="yek-card p-6 rounded-md border-t-4 border-t-[#fed813]">
+                    <div class="w-12 h-12 bg-[#fed813] text-[#323232] flex items-center justify-center rounded-sm mb-4 text-2xl">📊</div>
+                    <h3 class="text-xl font-bold mb-3">گزارش‌دهی هوشمند</h3>
+                    <ul class="text-sm text-gray-600 space-y-2 list-disc list-inside marker:text-[#fed813]">
+                        <li>گزارش هفتگی (<span class="font-bold text-black">یکشنبه‌ها ۹:۰۰</span>)</li>
+                        <li>گزارش ماهانه (<span class="font-bold text-black">اول ماه ۹:۰۰</span>)</li>
+                        <li>تحلیل روندها و الگوها</li>
+                        <li>شناسایی کاربران برتر</li>
+                    </ul>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="yek-card p-6 rounded-md">
+                    <div class="w-12 h-12 bg-gray-100 text-[#323232] flex items-center justify-center rounded-sm mb-4 text-2xl">🚨</div>
+                    <h3 class="text-xl font-bold mb-3">سیستم هشدار</h3>
+                    <ul class="text-sm text-gray-600 space-y-2 list-disc list-inside marker:text-[#fed813]">
+                        <li>تحلیل احساسات (Sentiment Analysis)</li>
+                        <li>تشخیص نارضایتی مشتری</li>
+                        <li>هشدار پیام‌های بی‌پاسخ (SLA)</li>
+                        <li>مدیریت Snooze و پاسخ سریع</li>
+                    </ul>
+                </div>
+
+                <!-- Feature 4 -->
+                <div class="yek-card p-6 rounded-md">
+                    <div class="w-12 h-12 bg-gray-100 text-[#323232] flex items-center justify-center rounded-sm mb-4 text-2xl">👥</div>
+                    <h3 class="text-xl font-bold mb-3">مدیریت نقش‌ها</h3>
+                    <p class="text-sm text-gray-600 mb-3">تعیین سطح دسترسی و نوع مانیتورینگ برای هر عضو:</p>
+                    <div class="flex flex-wrap gap-2 text-xs font-medium">
+                        <span class="bg-gray-200 px-2 py-1 rounded">کارمند</span>
+                        <span class="bg-[#fed813] px-2 py-1 rounded">مشتری</span>
+                        <span class="bg-blue-100 px-2 py-1 rounded">VIP</span>
+                        <span class="bg-red-100 px-2 py-1 rounded">بلاک</span>
+                    </div>
+                </div>
+
+                <!-- Feature 5 -->
+                <div class="yek-card p-6 rounded-md">
+                    <div class="w-12 h-12 bg-gray-100 text-[#323232] flex items-center justify-center rounded-sm mb-4 text-2xl">👤</div>
+                    <h3 class="text-xl font-bold mb-3">پروفایل کاربری</h3>
+                    <ul class="text-sm text-gray-600 space-y-2 list-disc list-inside marker:text-[#fed813]">
+                        <li>مشاهده آمار شخصی</li>
+                        <li>تنظیمات زمان هشدار</li>
+                        <li>تاریخچه فعالیت‌ها</li>
+                        <li>مدیریت داده‌های شخصی</li>
+                    </ul>
+                </div>
+
+                <!-- Feature 6 -->
+                <div class="yek-card p-6 rounded-md">
+                    <div class="w-12 h-12 bg-gray-100 text-[#323232] flex items-center justify-center rounded-sm mb-4 text-2xl">⚡</div>
+                    <h3 class="text-xl font-bold mb-3">عملکرد بهینه</h3>
+                    <ul class="text-sm text-gray-600 space-y-2 list-disc list-inside marker:text-[#fed813]">
+                        <li>پاکسازی خودکار منوها</li>
+                        <li>سیستم Caching هوشمند</li>
+                        <li>Rate Limiting امنیتی</li>
+                        <li>پاسخگویی سریع</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Admin Section -->
+    <section id="admin" class="py-20 bg-white border-y border-gray-200">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="order-2 md:order-1">
+                    <h2 class="text-3xl font-black mb-6 text-[#323232]">پنل مدیریت و ادمین</h2>
+                    <p class="text-gray-600 mb-8 leading-relaxed">
+                        دسترسی‌های ویژه برای مدیران سیستم جهت نظارت بر عملکرد کلی، مدیریت کاربران و تنظیمات هوش مصنوعی.
+                    </p>
+                    
+                    <div class="space-y-4">
+                        <div class="flex gap-4 items-start">
+                            <div class="w-6 h-6 rounded-full bg-[#fed813] flex-shrink-0 mt-1 flex items-center justify-center text-xs font-bold">1</div>
+                            <div>
+                                <h4 class="font-bold text-lg">مدیریت کاربران (ادمین اصلی)</h4>
+                                <p class="text-sm text-gray-500">مشاهده لیست، فعال/غیرفعال‌سازی، حذف کاربر و مشاهده آمار دقیق مصرف.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4 items-start">
+                            <div class="w-6 h-6 rounded-full bg-[#fed813] flex-shrink-0 mt-1 flex items-center justify-center text-xs font-bold">2</div>
+                            <div>
+                                <h4 class="font-bold text-lg">پرامپت‌های اختصاصی</h4>
+                                <p class="text-sm text-gray-500">امکان ویرایش و شخصی‌سازی پرامپت‌های سیستم برای گزارش‌ها و هشدارها.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4 items-start">
+                            <div class="w-6 h-6 rounded-full bg-[#fed813] flex-shrink-0 mt-1 flex items-center justify-center text-xs font-bold">3</div>
+                            <div>
+                                <h4 class="font-bold text-lg">نظارت بر API</h4>
+                                <p class="text-sm text-gray-500">داشبورد اختصاصی برای مشاهده میزان مصرف OpenAI و هزینه‌ها.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="order-1 md:order-2 bg-[#323232] p-8 rounded-lg text-white shadow-xl relative">
+                    <div class="absolute -top-4 -right-4 bg-[#fed813] text-[#323232] px-4 py-1 font-bold rounded-sm text-sm">ADMIN ONLY</div>
+                    <code class="text-sm font-mono text-green-400 block mb-2">> /admin_panel</code>
+                    <div class="space-y-3 font-mono text-sm opacity-90">
+                        <div class="border-b border-gray-600 pb-2">
+                            [1] User Management <span class="float-left text-gray-400">Ctrl+U</span>
+                        </div>
+                        <div class="border-b border-gray-600 pb-2">
+                            [2] System Prompts <span class="float-left text-gray-400">Ctrl+P</span>
+                        </div>
+                        <div class="border-b border-gray-600 pb-2">
+                            [3] API Usage Stats <span class="float-left text-gray-400">Ctrl+S</span>
+                        </div>
+                        <div class="text-red-400">
+                            [4] System Health: OK
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Architecture Section -->
+    <section id="architecture" class="py-20 bg-[#f9fafb]">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-black mb-4">معماری سیستم</h2>
+                <p class="text-gray-600">طراحی شده برای مقیاس‌پذیری و امنیت</p>
+            </div>
+
+            <div class="max-w-4xl mx-auto">
+                <div class="flex flex-col gap-4">
+                    <!-- Layer 1 -->
+                    <div class="bg-white border-2 border-blue-400 p-4 rounded text-center shadow-sm">
+                        <span class="font-bold text-blue-600">Telegram Bot API</span>
+                    </div>
+                    
+                    <div class="h-8 w-0.5 bg-gray-300 mx-auto"></div>
+                    
+                    <!-- Layer 2 -->
+                    <div class="bg-white border-2 border-[#fed813] p-6 rounded shadow-sm text-center">
+                        <h4 class="font-bold mb-4">Handlers Layer (Python)</h4>
+                        <div class="flex flex-wrap justify-center gap-2 text-xs">
+                            <span class="bg-gray-100 px-2 py-1 rounded">start.py</span>
+                            <span class="bg-gray-100 px-2 py-1 rounded">group.py</span>
+                            <span class="bg-gray-100 px-2 py-1 rounded">report.py</span>
+                            <span class="bg-gray-100 px-2 py-1 rounded">alerts.py</span>
+                            <span class="bg-gray-100 px-2 py-1 rounded">admin.py</span>
+                        </div>
+                    </div>
+
+                    <div class="h-8 w-0.5 bg-gray-300 mx-auto"></div>
+
+                    <!-- Layer 3 -->
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div class="bg-white border-2 border-[#323232] p-6 rounded shadow-sm">
+                            <h4 class="font-bold mb-3 text-center text-[#323232]">Services</h4>
+                            <ul class="text-sm space-y-1 text-gray-600">
+                                <li>• User & Group Service</li>
+                                <li>• Report & Analytics</li>
+                                <li>• Alert System</li>
+                                <li>• AI Integration (GPT-4)</li>
+                            </ul>
+                        </div>
+                        <div class="bg-white border-2 border-green-500 p-6 rounded shadow-sm">
+                            <h4 class="font-bold mb-3 text-center text-green-700">Database (Supabase)</h4>
+                            <div class="grid grid-cols-2 gap-2 text-xs text-center">
+                                <div class="bg-green-50 p-1 rounded">Users</div>
+                                <div class="bg-green-50 p-1 rounded">Groups</div>
+                                <div class="bg-green-50 p-1 rounded">Messages</div>
+                                <div class="bg-green-50 p-1 rounded">Alerts</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Roadmap & Contact -->
+    <section id="roadmap" class="py-20 bg-[#323232] text-white">
+        <div class="container mx-auto px-4 grid md:grid-cols-2 gap-12">
+            <div>
+                <h2 class="text-2xl font-black mb-6 text-[#fed813]">بهبودهای آینده</h2>
+                <ul class="space-y-4">
+                    <li class="flex items-center gap-3">
+                        <span class="w-4 h-4 border-2 border-[#fed813] rounded-full"></span>
+                        <span>راه‌اندازی یکضربه (One-Click Setup)</span>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <span class="w-4 h-4 border-2 border-[#fed813] rounded-full"></span>
+                        <span>گزارش‌های تصویری و نموداری</span>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <span class="w-4 h-4 border-2 border-[#fed813] rounded-full"></span>
+                        <span>پیشنهادات هوشمند بر اساس رفتار کاربر</span>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <span class="w-4 h-4 border-2 border-[#fed813] rounded-full"></span>
+                        <span>رابط کاربری تطبیقی (حالت مبتدی/حرفه‌ای)</span>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="bg-[#444] p-8 rounded-lg border-r-4 border-[#fed813]">
+                <h2 class="text-2xl font-black mb-6">تماس با پشتیبانی</h2>
+                <div class="space-y-4">
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 bg-[#fed813] text-[#323232] rounded-full flex items-center justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                            </svg>
+                        </div>
+                        <div>
+                            <div class="text-sm opacity-70">توسعه‌دهنده</div>
+                            <div class="font-bold">@omiddshojaei</div>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 bg-[#fed813] text-[#323232] rounded-full flex items-center justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                            </svg>
+                        </div>
+                        <div>
+                            <div class="text-sm opacity-70">مستندات</div>
+                            <div class="font-bold">VERSION.md / README.md</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black text-white py-6 text-center text-sm opacity-90">
+        <div class="container mx-auto">
+            <p>© ۱۴۰۴ هوش‌یار | طراحی شده بر اساس هویت بصری یکتانت</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll for anchors
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+                // Close mobile menu if open
+                document.getElementById('mobile-menu').classList.add('hidden');
+            });
+        });
+
+        // Set active nav item
+        function setActive(element) {
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('nav-active');
+                link.classList.remove('font-bold');
+            });
+            element.classList.add('nav-active');
+            element.classList.add('font-bold');
+        }
+
+        // Scroll spy
+        window.addEventListener('scroll', () => {
+            let current = '';
+            const sections = document.querySelectorAll('section, header');
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= sectionTop - 150) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            if (current) {
+                document.querySelectorAll('.nav-link').forEach(link => {
+                    link.classList.remove('nav-active');
+                    if (link.getAttribute('href').includes(current)) {
+                        link.classList.add('nav-active');
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
